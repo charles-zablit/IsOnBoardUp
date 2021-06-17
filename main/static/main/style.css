@@ -1,0 +1,239 @@
+body {
+  font-family: "Roboto", sans-serif;
+  background-color: #44484c;
+}
+
+h1 {
+  color: #e3e3e3;
+  text-align: center;
+  font-size: 100px;
+  margin-top: 30px;
+  margin-bottom: 5px;
+}
+
+h1 .h1color-success {
+  color: #00cc3a;
+}
+
+h1 .h1color-danger {
+  color: red;
+}
+
+h3 {
+  color: #e3e3e3;
+  text-align: center;
+  font-size: 12px;
+  margin-bottom: 50px;
+}
+
+.small-box {
+  border-radius: 0.25rem;
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0.125), 0 1px 3px rgba(0, 0, 0, 0.2);
+  display: block;
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.small-box > .inner {
+  padding: 10px;
+}
+
+.small-box h4 {
+  font-size: 2.2rem;
+  font-weight: 700;
+  margin: 0 0 10px 0;
+  padding: 0;
+  white-space: nowrap;
+}
+@media (min-width: 992px) {
+  .col-lg-2 .small-box h4,
+  .col-md-2 .small-box h4,
+  .col-xl-2 .small-box h4 {
+    font-size: 1.6rem;
+  }
+  .col-lg-3 .small-box h4,
+  .col-md-3 .small-box h4,
+  .col-xl-3 .small-box h4 {
+    font-size: 1.6rem;
+  }
+}
+@media (min-width: 1200px) {
+  .col-lg-2 .small-box h4,
+  .col-md-2 .small-box h4,
+  .col-xl-2 .small-box h4 {
+    font-size: 2.2rem;
+  }
+  .col-lg-3 .small-box h4,
+  .col-md-3 .small-box h4,
+  .col-xl-3 .small-box h4 {
+    font-size: 2.2rem;
+  }
+}
+.small-box p {
+  font-size: 1rem;
+}
+.small-box p > small {
+  color: #f8f9fa;
+  display: block;
+  font-size: 0.9rem;
+  margin-top: 5px;
+}
+.small-box h4,
+.small-box p {
+  z-index: 5;
+  color: #e3e3e3;
+}
+.small-box .icon {
+  color: rgba(0, 0, 0, 0.15);
+  z-index: 0;
+}
+.small-box .icon > i {
+  font-size: 90px;
+  position: absolute;
+  right: 15px;
+  top: 15px;
+  transition: all 0.3s linear;
+}
+
+.small-box .icon > i.fa,
+.small-box .icon > i.fab,
+.small-box .icon > i.far,
+.small-box .icon > i.fas,
+.small-box .icon > i.glyphicon,
+.small-box .icon > i.ion {
+  line-height: 1;
+  font-size: 70px;
+  top: 20px;
+}
+.small-box:hover {
+  text-decoration: none;
+}
+.small-box:hover .icon > i {
+  font-size: 95px;
+}
+.small-box:hover .icon > i.fa,
+.small-box:hover .icon > i.fab,
+.small-box:hover .icon > i.far,
+.small-box:hover .icon > i.fas,
+.small-box:hover .icon > i.glyphicon,
+.small-box:hover .icon > i.ion {
+  font-size: 75px;
+}
+
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+@media (max-width: 767.98px) {
+  .small-box {
+    text-align: center;
+  }
+  .small-box .icon {
+    display: none;
+  }
+  .small-box p {
+    font-size: 12px;
+  }
+}
+
+.small-box > .loading-img,
+.small-box > .overlay {
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+
+.small-box .overlay > .fa,
+.small-box .overlay > .fab,
+.small-box .overlay > .far,
+.small-box .overlay > .fas,
+.small-box .overlay > .glyphicon,
+.small-box .overlay > .ion {
+  color: #343a40;
+}
+
+.small-box .overlay {
+  border-radius: 0.25rem;
+  -ms-flex-align: center;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.7);
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: center;
+  justify-content: center;
+  z-index: 50;
+}
+
+.morris-hover {
+  position: absolute;
+  z-index: 1000;
+}
+
+.morris-hover.morris-default-style {
+  border-radius: 10px;
+  padding: 6px;
+  color: rgb(232, 16, 16);
+  background: rgba(255, 255, 255, 0.8);
+  border: solid 2px rgba(230, 230, 230, 0.8);
+  font-family: sans-serif;
+  font-size: 12px;
+  text-align: center;
+}
+
+.morris-hover.morris-default-style .morris-hover-row-label {
+  font-weight: bold;
+  margin: 0.25em 0;
+  color: rgba(230, 230, 230, 0.8);
+}
+
+.morris-hover.morris-default-style .morris-hover-point {
+  white-space: nowrap;
+  margin: 0.1em 0;
+}
+
+.morris-chart {
+  margin-bottom: 50px;
+}
+
+.morris-chart svg path {
+  stroke: none !important;
+}
+
+svg {
+  width: 100%;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+}
+
+.custom-select {
+  position: relative;
+  display: block;
+  max-width: 120px;
+  min-width: 100px;
+  margin: 0 auto;
+  border: 1px solid #2c2f32;
+  background-color: #44484c;
+  z-index: 10;
+}
+
+select {
+  border: none;
+  outline: none;
+  background: transparent;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border-radius: 0;
+  margin: 0;
+  display: block;
+  width: 100%;
+  padding: 12px 55px 15px 15px;
+  font-size: 14px;
+  color: #ffffff !important;
+}

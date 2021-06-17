@@ -1,0 +1,143 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+  <title>Is OnBoard Up ?</title>
+  <link href="{% static 'favicon.png' %}" rel="shortcut icon"/>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+	<link rel="stylesheet" type="text/css" href="{% static 'main/style.css' %}">
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w==" crossorigin="anonymous" />
+</head>
+<body>
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-12">
+				{% if isdown %}
+					<h1>OnBoard is <span class="h1color-danger"> down</span></h1>
+				{% else %}
+					<h1>OnBoard is <span class="h1color-success"> up</span></h1>
+				{% endif %}
+				<h3>Last check was at {{ lastcheck }}</h3>
+			</div>
+		</div>
+		<div class="row mb-3">
+			<div class="col-sm-8">
+				<div class="row mb-3">
+					<div class="col-12">
+						<select name="timeframe" id="timeframe-select" class="timeframe-selector custom-select">
+								<option value="0">1 hour</option>
+								<option value="1">12 hours</option>
+								<option value="2">1 day</option>
+								<option value="3">1 week</option>
+						</select>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-12">
+						<div class="chart">
+							<canvas id="Ping Chart"></canvas>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-4">
+				<div id="ratio" class="morris-chart"></div>
+			</div>
+		</div>
+		<div class="row justify-content-around">
+			<div class="col-lg-3 col-6">
+				<div class="small-box bg-info">
+					<div class="inner">
+						<h4>{{ averagelogin }}</h4>
+						<p>Average time to login</p>
+					</div>
+					<div class="icon">
+						<i class="fas fa-clock"></i>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-3 col-6">
+				<div class="small-box bg-info">
+					<div class="inner">
+						<h4>{{ averageretry }}</h4>
+						<p>Average number of attempts</p>
+					</div>
+					<div class="icon">
+						<i class="fas fa-redo"></i>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-3 col-6">
+				<div class="small-box bg-success">
+					<div class="inner">
+						<h4>{{ visitors_count }}</h4>
+						<p>Number of visitors</p>
+					</div>
+					<div class="icon">
+						<i class="fas fa-users"></i>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-3 col-6">
+				<div class="small-box bg-success">
+					<div class="inner">
+						<h4>{{ numberofqueries }}</h4>
+						<p>Number of queries</p>
+					</div>
+					<div class="icon">
+						<i class="fas fa-server"></i>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
+<script src="{% static 'main/script.js' %}"></script>
+<!-- Bootstrap 4 -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script>
+<script>
+	function donutChart() {
+	var donut_data=JSON.parse('{{donut_data|safe}}');
+  window.donutChart = Morris.Donut({
+    element: "ratio",
+    data: [
+      {
+        label: "Failed queries",
+        value: donut_data.total_failed,
+      },
+      {
+        label: "Successful queries",
+        value:
+				donut_data.total - donut_data.total_failed,
+      },
+    ],
+    resize: true,
+    redraw: true,
+    colors: ["#3A89C9", "#22d25a"],
+		labelColor: '#FFF'
+  });
+}
+
+$(document).ready(function () {
+  donutChart();
+
+  $(window).resize(function () {
+    window.donutChart.redraw();
+  });
+});
+
+</script>
+</html>

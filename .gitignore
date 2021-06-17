@@ -1,0 +1,4 @@
+auth_tokens.py
+db.sqlite3
+*.DS_Store
+*.pyc
